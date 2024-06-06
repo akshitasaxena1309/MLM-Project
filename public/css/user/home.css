@@ -61,12 +61,13 @@ img {
 @media (max-width: 768px) {
   .Rectangle22 {
     width: 95%;
-    height: 230px;
+    height: 200px;
     margin: 5%;
   }
 
   .slide img {
-    border-radius: 12px; /* Adjusted for better visual on smaller screens */
+    border-radius: 12px;
+    height: 200px; /* Adjusted for better visual on smaller screens */
   }
 }
 .container {
