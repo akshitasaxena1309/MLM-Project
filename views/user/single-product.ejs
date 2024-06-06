@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Single Product</title>
+  <link rel="stylesheet" href="/css/user/single-product.css" />
+  <link rel="stylesheet" href="/css/common.css" />
+  <script>
+    function formatUrl(url) {
+    // Your URL formatting logic here
+    return url.replace(/\\/g, '/');
+}
+  </script>
+</head>
+
+<body>
+  <%- include('header') %>
+    <div class="content-container">
+
+      <div class="image-container">
+        <div class="imgdisplay">
+            <img id="mainImage" src="<%= product.imgs[0].replace(/\\/g, '/') %>" alt="Your Image">
+        </div>
+        <div class="imgsfordisplay">
+            <% for (const imgUrl of product.imgs) { %>
+                <img src="<%= imgUrl.replace(/\\/g, '/') %>" alt="Product Image" onclick="changeMainImage1('<%= imgUrl.replace(/\\/g, '/') %>')">
+            <% } %>
+        </div>
+    </div>
+    
+      <div class="product-details">
+
+        <h1>
+          <%=product.title%>
+        </h1>
+        <h3>
+          <%=category.name%>
+        </h3>
+        <div class="flex">
+          <p class="price">&#8377;<%=product.dp%>
+          </p>
+          <% var mrp=product.mrp; var dp=product.dp; var discountedPrice=(((mrp - dp)/mrp)*100).toFixed(0);%>
+            <p class="price mrp">&#8377;<%=product.mrp%><span> (<%= discountedPrice%>% off)</span></p>
+        </div>
+        <div class="buttons-container">
+          <button class="btn" style="width: 150px;" onclick="addToCart('<%= product._id %>')">Add to Cart</button>
+          <button class="btn" style="width: 150px;"
+            onclick="location.href='/user/buyNow?pId=<%=product._id.toString()%>'">Buy Now </button>
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+    <div class="container">
+      <div class="section">
+        <div class="section-header">
+          <div class="section-title">Recommended For You</div>
+          <button
+            class="btn"
+            style="width: 100px"
+            onclick="location.href='/user/allProduct'"
+          >
+            See All
+          </button>
+        </div>
+        <div class="product-grid">
+          <% for(p of products) {%>
+          <div
+            class="product-card"
+            onclick="location.href='/user/singleProduct?pId=<%=p._id.toString()%>'"
+          >
+            <img class="product-image" src="<%=p.img%>" alt="Product 1" />
+            <h3 class="product-title"><%=p.title%></h3>
+            <p class="short-description">
+              <%= p.description.substring(0, 100) %> <strong>...</strong>
+            </p>
+
+            <div class="flex">
+              <h3 class="product-title">&#8377;<%=p.dp%></h3>
+              <h3 class="product-title mrp">&#8377;<%=p.mrp%></h3>
+            </div>
+          </div>
+          <%}%>
+        </div>
+      </div>
+    </div>
+
+
+      <%- partial('footer') %>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script>
+
+          function addToCart(productId) {
+            console.log(productId);
+            fetch(`/user/addToCart/${productId}`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              // Include the product ID in the request body
+              body: JSON.stringify({ productId: productId }),
+              // You can include credentials if needed, e.g., 'credentials': 'include'
+            })
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error('Error adding product to cart');
+                }
+                return response.json();
+              })
+              .then(data => {
+                console.log(data); // Handle the success response
+                alert('Product added to cart successfully!');
+                window.location.reload();
+
+              })
+              .catch(error => {
+                console.error(error); // Handle the error response
+                window.location.href = "/user/loginPage";
+              });
+          }
+    function changeMainImage1(newImageUrl) {
+        const mainImage = document.getElementById('mainImage');
+        mainImage.src = newImageUrl;
+        mainImage.alt = 'Your Image';
+    }
+
+        </script>
+</body>
+
+</html>

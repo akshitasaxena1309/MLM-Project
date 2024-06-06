@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customers Page</title>
+    <link rel="stylesheet" href="/css/admin/styles.css" />
+    <link rel="stylesheet" href="/css/common.css" />
+    <link rel="stylesheet" href="/css/admin/customers.css" />
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        border: 3px solid rgba(14, 10, 10, 0.268);
+        padding: 8px;
+        text-align: left;
+        background-color: white;
+      }
+
+      th {
+        /* border: 3px solid rgba(255, 255, 255, 0.268); */
+        background-color: white;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1 style="color: white">Sellers Page</h1>
+    </header>
+
+    <main>
+      <%- partial('nav') %>
+
+      <section>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Aadhar Number</th>
+              <th>City</th>
+              <th>E-Mail</th>
+              <th>Country</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(u of seller) { %>
+            <tr>
+              <td><%= u.username %></td>
+              <td><%= u.phone %></td>
+              <td><%= u.aadharNo %></td>
+              <td><%= u.address.city %></td>
+              <td><%= u.email %></td>
+              <td><%= u.address.country %></td>
+              <td>
+                <button
+                  type="button"
+                  class="btn"
+                  style="width: 100px"
+                  onclick="location.href='/admin/sellers/details?id=<%= u._id %>'"
+                  style="cursor: pointer"
+                >
+                  Action
+                </button>
+              </td>
+            </tr>
+            <% }; %>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Categories</title>
+    <link rel="stylesheet" href="/css/admin/styles.css" />
+    <link rel="stylesheet" href="/css/admin/categories.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link rel="stylesheet" href="/css/common.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Categories</h1>
+    </header>
+
+    <main>
+      <%- partial('nav') %>
+      <section>
+        <h2>List of Categories</h2>
+
+        <button
+          class="btn"
+          style="width: 200px"
+          style="cursor: pointer"
+          onclick="location.href='/admin/add-categories'"
+        >
+          Add New Category
+        </button>
+
+        <div class="product-grid">
+          <% for(const k of category) { %>
+          <div class="product-card">
+            <img class="product-image" src="<%=k.img%>" alt="Product 1" />
+            <h3 class="product-title"><%=k.name%></h3>
+            <div id="icons">
+              <span
+                class="material-symbols-outlined"
+                onclick="confirmDelete('<%= k._id %>')"
+                style="cursor: pointer"
+              >
+                delete
+              </span>
+              <span
+                class="material-symbols-outlined edit"
+                id="edit-form"
+                style="margin-right: 10px; cursor: pointer"
+                onclick="editCategory('<%= k._id %>','<%= k.name %>','<%= k.img %>')"
+              >
+                edit
+              </span>
+            </div>
+          </div>
+
+          <%}%>
+          <!-- Add more product cards as needed -->
+        </div>
+      </section>
+
+      <div id="editFormContainer" class="edit-form-container">
+        <div class="edit-form-header">
+          <span class="close-btn" id="closeBtn">&times;</span>
+        </div>
+        <form
+          id="editForm"
+          class="edit-form"
+          action="/admin/categories/edit"
+          method="POST"
+        >
+          <!-- Your form fields go here -->
+          <input type="hidden" id="category-id" name="categoryId" />
+
+          <label for="categoryName">category Name:</label>
+          <input type="text" id="categoryName" name="categoryName" required />
+
+          <label for="categoryImage">Image Url:</label>
+          <input type="text" id="categoryImage" name="categoryImage" required />
+
+          <button class="add-product-btn" type="submit">Save</button>
+        </form>
+      </div>
+    </main>
+    <script src="/js/admin/categories.js"></script>
+  </body>
+</html>

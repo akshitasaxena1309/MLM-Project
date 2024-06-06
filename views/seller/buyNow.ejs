@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+    <link rel="stylesheet" href="/css/common.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+      .btn-class {
+        width: 100px;
+        background-color: white;
+        color: #47754b;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .btn-class:hover {
+        background-color: #9ecaa3;
+        color: white;
+      }
+      .container {
+        width: 100%;
+        height: auto;
+      }
+      .d-btn {
+        padding: 15%;
+      }
+      .quantity-control {
+        display: flex;
+        flex-direction: row;
+      }
+      .incDec {
+        margin: 5px;
+      }
+      .btn-class {
+        width: 100px;
+        background-color: white;
+        color: #47754b;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .btn-class:hover {
+        background-color: #9ecaa3;
+        color: white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <%- partial('header') %>
+    <section class="h-100 gradient-custom">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-lg-10 col-xl-8">
+            <div class="card" style="border-radius: 10px">
+              <div class="card-header px-4 py-5">
+                <h5 class="text-muted mb-0">
+                  Hello,
+                  <span style="color: #47754b"><%=seller.username%></span>!
+                </h5>
+              </div>
+              <div class="card-body p-4">
+                <div
+                  class="d-flex justify-content-between align-items-center mb-4"
+                >
+                  <p class="lead fw-normal mb-0" style="color: #47754b">
+                    Your Product
+                  </p>
+                </div>
+                <div class="card shadow-0 border mb-4">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-2">
+                        <img src="<%=product.img%>" class="img-fluid" />
+                      </div>
+                      <div
+                        class="col-md-2 text-center d-flex justify-content-center align-items-center"
+                      >
+                        <p class="text-muted mb-0"><%=product.title%></p>
+                      </div>
+
+                      <div
+                        class="col-md-2 text-center d-flex justify-content-center align-items-center"
+                      >
+                        <p class="text-muted mb-0 small"><%=category.name%></p>
+                      </div>
+                      <div
+                        class="col-md-2 text-center d-flex justify-content-center align-items-center"
+                      >
+                        <div class="quantity-control">
+                          <button
+                            class="incDec"
+                            onclick="updateQuantity('<%= seller.buynow.product %>', 'decrement')"
+                            style="cursor: pointer"
+                          >
+                            -
+                          </button>
+                          <p
+                            id="quantityDisplay_<%= seller.buynow.product %>"
+                            class="text-muted mb-0 small"
+                          >
+                            Qty: <%= seller.buynow.quantity %>
+                          </p>
+                          <button
+                            class="incDec"
+                            onclick="updateQuantity('<%= seller.buynow.product %>', 'increment')"
+                            style="cursor: pointer"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+                      <div
+                        class="col-md-2 text-center d-flex justify-content-center align-items-center"
+                      >
+                        <p class="text-muted mb-0 small">
+                          MRP: &#8377;<%=product.dp%>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-between pt-2">
+                  <p class="fw-bold mb-0">Address</p>
+                </div>
+
+                <div class="d-flex justify-content-between pt-2">
+                  <p class="text-muted mb-0"><%=seller.address.street%></p>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                  <p class="text-muted mb-0">
+                    <%=seller.address.city%>,<%=seller.address.zipCode%>
+                  </p>
+                </div>
+
+                <div class="d-flex justify-content-between mb-5">
+                  <p class="text-muted mb-0">
+                    <%=seller.address.state%>,<%=seller.address.country%>
+                  </p>
+                  <p class="text-muted mb-0">
+                    <span class="fw-bold me-4">Delivery Charges</span> Free
+                  </p>
+                </div>
+              </div>
+              <div
+                class="card-footer border-0 px-4 py-5"
+                style="
+                  background-color: #47754b;
+                  border-bottom-left-radius: 10px;
+                  border-bottom-right-radius: 10px;
+                "
+              >
+                <h5
+                  class="d-flex align-items-center justify-content-end text-white text-uppercase mb-0"
+                >
+                  Total Price :
+                  <span class="h2 mb-0 ms-2"
+                    >&#8377;<%=(product.dp *
+                    seller.buynow.quantity).toFixed(2)%></span
+                  >
+                </h5>
+
+                <button
+                  type="button"
+                  class="btn-class btn-light"
+                  onclick="orderPaymentHandlerForSeller('<%=product._id%>')"
+                  style="cursor: pointer"
+                  id="rzp-button1"
+                >
+                  Proceed
+                </button>
+
+                <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <%- partial('footer') %>
+    <script src="/js/user/paymentHandler.js"></script>
+    <script>
+      async function updateQuantity(productId, operation) {
+        try {
+          const response = await fetch("/seller/buynowUpdateCartQuantity", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ productId, operation }),
+          });
+
+          if (response.ok) {
+            const result = await response.json();
+            document.getElementById(
+              `quantityDisplay_${productId}`
+            ).innerText = `Qty: ${result.newQuantity}`;
+            window.location.reload();
+          } else {
+            console.error("Failed to update quantity:", response.statusText);
+          }
+        } catch (error) {
+          console.error("Error updating quantity:", error);
+        }
+      }
+    </script>
+  </body>
+</html>

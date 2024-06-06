@@ -1,0 +1,81 @@
+/* Common styles for all devices */
+.container {
+  display: flex;
+  flex-direction: column;
+}
+.links {
+  margin-top: 1rem;
+}
+
+.links a {
+  display: block;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+  color: #47754b;
+}
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  /* height: 150px; */
+}
+
+.card {
+  background-color: #fff;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  flex: 1 0 300px;
+  /* height: 150px; */
+}
+.form {
+  flex-basis: calc(70%);
+  padding: 1rem;
+}
+
+.form h2 {
+  margin-top: 0;
+}
+
+.form label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form input,
+.form select {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.form button[type="submit"] {
+  display: block;
+  width: 100%;
+  background-color: #47754b;
+  color: #fff;
+  border: none;
+  padding: 0.5rem;
+  text-align: center;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+/* Responsive styles for iPad */
+@media only screen and (max-width: 600px) {
+  /* .container {
+    display: flex;
+    flex-direction: column;
+  } */
+  /* 
+  .form {
+    flex-basis: 100%;
+  } */
+
+  .card {
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+  }
+}

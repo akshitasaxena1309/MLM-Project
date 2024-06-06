@@ -1,0 +1,136 @@
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Additional styles specific to the Products page */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background-color: #fff;
+  padding: 15px;
+  height: 320px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+  width: 100%;
+  height: 60%;
+  /* height: auto; */
+  border-radius: 8px;
+}
+
+.product-title {
+  margin: 10px 0;
+  font-size: 18px;
+  color: var(--primary-color, #47754b);
+}
+
+.product-description {
+  color: #555;
+}
+
+.product-link {
+  color: var(--accent-color, #b0d9b1);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#icons {
+  display: flex;
+  flex-direction: row-reverse;
+  opacity: 70%;
+}
+.material-symbols-outlined {
+  cursor: pointer;
+}
+.material-symbols-outlined {
+  cursor: pointer;
+}
+
+.edit-form-container {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #79ac78;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.edit-form-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-btn {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.edit-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.edit-form label {
+  color: white;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.edit-form input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid white;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+.edit-form button {
+  background-color: #47754b;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-form button:hover {
+  background-color: #345a38;
+}
+
+.edit-form-container.active {
+  display: block;
+}
+.close-btn {
+  color: white;
+}

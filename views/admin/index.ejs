@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/admin/styles.css" />
+    <link rel="stylesheet" href="/css/common.css">
+    <style>
+ 
+table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th,
+    td {
+      border: 3px solid rgba(14, 10, 10, 0.268);
+      padding: 8px;
+      text-align: left;
+      background-color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    
+
+    tr:hover {
+      background-color: #dddddd;
+    }
+    
+    .card:hover {
+        transition: 0.7s;
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body>
+   <header> <h1>Admin Dashboard</h1></header>
+   
+    
+   
+  
+    <main>
+      <%- partial('nav') %>
+    
+  <section>
+        <div class="cards">
+
+          <div class="card" onclick="location.href='/admin/products'" style="cursor: pointer;">
+            <h2><%= totalProduct %></h2>
+            <p>Total Products</p>
+          </div>
+
+          <div class="card" onclick="location.href='/admin/customers'" style="cursor: pointer;">
+            <h2><%= totalUser %></h2>
+            <p>Total Customers </p>
+          </div>
+
+          <div class="card" onclick="location.href='/admin/sellers'" style="cursor: pointer;">
+            <h2><%= totalSeller %></h2>
+            <p>Total Sellers</p>
+          </div>
+          <div class="card"  onclick="location.href='/admin/orders'" style="cursor: pointer;">
+            <h2>
+              <%= totalUserOrders+ totalSellerOrders %>
+            </h2>
+            <p>Total Orders</p>
+          </div>
+          <div class="card">
+            <h2><%= totalUserOrders %></h2>
+            <p>Total Customer Orders</p>
+          </div>
+
+          <div class="card">
+            <h2><%= totalSellerOrders %></h2>
+            <p>Total Seller Orders</p>
+          </div>
+        </div>
+        <div class="report-container">
+          <div class="report-header">
+            <h3>Monthly Deposit & Withdraw Report</h3>
+            <div class="report-legend">
+            </div>
+          </div>
+          <table>
+            <tbody>
+              <tr>
+                <th colspan="5">Total Deposit From User</th>
+                <td><%=(totalUserTotalAmount).toFixed(2)%></td>
+                <th colspan="2">Total Deposit From Seller</th>
+                <td><%=(totalSellerTotalAmount).toFixed(2)%></td>
+              </tr>
+              <tr>
+                <th colspan="5">Total Deposit</th>
+                <td><%=(totalSellerTotalAmount+totalUserTotalAmount).toFixed(2)%></td>
+                <th colspan="2">Total Deposit Charge</th>
+                <td>0</td>
+              </tr>
+              <tr>
+                <th colspan="5">Pending Deposit</th>
+                <td>5.0</td>
+                <th colspan="2">Pending Withdrawals</th>
+                <td>0.00 INR</td>
+              </tr>
+            </tbody>
+          </table>
+      </section>
+
+    </main>
+  
+  </body>
+</html>

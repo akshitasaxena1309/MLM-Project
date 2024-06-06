@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Single Category</title>
+    <link rel="stylesheet" href="/css/common.css" />
+    <style>
+      .category-name {
+        color: #345a38;
+      }
+      .container {
+        width: 100%;
+        height: auto;
+      }
+      .Rectangle {
+        position: absolute;
+        top: 0;
+        z-index: -11;
+      }
+      header {
+        box-shadow: none;
+      }
+
+      .Group2 {
+        margin: 30px 40px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        background: #fffafa;
+        border-radius: 15px;
+        padding: 0 10px; /* Added padding for spacing */
+      }
+
+      .SearchForMedicine {
+        flex-grow: 1; /* Allow the input to take up remaining space */
+      }
+
+      .SearchInput {
+        width: 100%; /* Take up 100% of the available width */
+        height: 90%;
+        border: none;
+        outline: none;
+        font-size: 16px;
+      }
+
+      .Rectangle22 {
+        overflow: hidden;
+        width: 84%;
+        height: 309px;
+        margin: 5% 8%;
+        background: #fff9f9;
+        border-radius: 12.33px;
+      }
+      .slide {
+        display: none;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+      }
+
+      .shop-by-categories {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .category-text {
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .see-all-btn {
+        padding: 10px 20px;
+        background-color: #47754b;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+
+      .category-cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .category-card {
+        flex: 1 0 calc(20% - 20px);
+        height: 100px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.2s ease-in-out;
+      }
+
+      .category-card:hover {
+        transform: scale(1.05);
+      }
+
+      .section {
+        margin-bottom: 30px;
+      }
+
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .section-title {
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .see-all-btn {
+        padding: 10px 22px;
+        background-color: #47754b;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+
+      .product-card:hover {
+        transition: 0.7s;
+        transform: scale(1.05);
+      }
+      @media screen and (max-width: 768px) {
+        .product-card {
+          flex: 1 0 calc(35% - 20px);
+        }
+
+        .category-card {
+          flex: 1 0 calc(35% - 20px);
+        }
+      }
+      #search-icon {
+        background-color: #ffffff;
+        display: flex;
+        margin-right: -10px;
+        padding: 17px;
+        border-radius: 10px 15px;
+      }
+
+      /* Media Query for responsiveness */
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+      }
+
+      .product-card {
+        background-color: #fff;
+        padding: 15px;
+        height: 300px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .product-image {
+        width: 100%;
+        height: 60%;
+
+        border-radius: 8px;
+      }
+
+      .product-title {
+        margin: 10px 0;
+        font-size: 18px;
+        color: var(--primary-color, #47754b);
+      }
+
+      .product-description {
+        color: #555;
+      }
+
+      .product-link {
+        color: var(--accent-color, #b0d9b1);
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .mrp {
+        color: rgb(211, 58, 58);
+        text-decoration: line-through;
+        padding-left: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <%- partial('header') %>
+    <div class="container">
+      <div><h2 class="category-name"><%=category.name%></h2></div>
+      <div class="product-grid">
+        <% for(p of products) {%>
+        <div
+          class="product-card"
+          onclick="location.href='/user/singleProduct?pId=<%=p._id.toString()%>'"
+          style="cursor: pointer"
+        >
+          <img class="product-image" src="<%=p.img%>" alt="Product 1" />
+          <h3 class="product-title"><%=p.title%></h3>
+          <p class="short-description">
+            <%= p.description.substring(0, 100) %> <strong>...</strong>
+          </p>
+          <div class="flex">
+            <h3 class="product-title">&#8377;<%=p.dp%></h3>
+            <h3 class="product-title mrp">&#8377;<%=p.mrp%></h3>
+          </div>
+        </div>
+        <%}%>
+      </div>
+    </div>
+    <%- partial('footer') %>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="/css/admin/nav.css" />
+<link rel="stylesheet" href="/css/common.css" />
+
+<nav>
+  <a href="/admin/index">Dashboard</a>
+  <a href="/admin/orders">Orders</a>
+  <a href="/admin/products">Products</a>
+  <a href="/admin/categories">Categories</a>
+  <a href="/admin/sellers">Sellers</a>
+  <a href="/admin/customers">Users</a>
+  <a href="/admin/Registration">Admin Registration</a>
+  <a href="/admin/calculateBV">Calculate BV</a>
+  <a href="/admin/calculateE">Calculate Earning</a>
+  <a href="/admin/royalty">Calculate Royalty</a>
+  <a href="/admin/global">Calculate Global</a>
+  <a href="/admin/newSeller">New Seller</a>
+  <a href="/admin/newUser">New User</a>
+  <a onclick="logout()">Logout</a>
+</nav>
+<script>
+  async function logout() {
+    const confirmation = confirm("Are you sure you want to log out?");
+
+    if (confirmation) {
+      try {
+        // Make an asynchronous request to log out
+        const response = await fetch(`/admin/logout`);
+
+        if (response.ok) {
+          // If the response is successful, redirect or handle as needed
+
+          window.location.href = "/admin"; // Redirect to login page or another page
+        } else {
+          // If the response is not successful, handle the error
+          console.error("Logout failed:", response.statusText);
+          // You may want to show an error message to the user
+        }
+      } catch (error) {
+        // Handle any network or other errors
+        console.error("Error during logout:", error);
+      }
+    }
+  }
+</script>

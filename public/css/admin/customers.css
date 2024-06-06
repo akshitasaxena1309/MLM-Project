@@ -1,0 +1,52 @@
+header {
+  background-color: var(--primary-color, #47754b);
+  color: var(--text-color, #79ac78);
+  padding: 15px;
+  text-align: center;
+}
+
+main {
+  display: flex;
+  flex: 1;
+}
+
+section {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  color: var(--primary-color, #47754b);
+  margin-bottom: 20px;
+}
+
+.customer-list {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 70%;
+  max-width: 600px;
+}
+
+.customer-item {
+  margin-bottom: 15px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.customer-name {
+  font-weight: bold;
+  color: var(--primary-color, #47754b);
+}
+
+.customer-email {
+  color: #555;
+}

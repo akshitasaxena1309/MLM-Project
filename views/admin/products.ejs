@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Products Page</title>
+    <link rel="stylesheet" href="/css/admin/styles.css" />
+    <link rel="stylesheet" href="/css/admin/products.css" />
+    <link rel="stylesheet" href="/css/common.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Products Page</h1>
+    </header>
+
+    <main>
+      <%- partial('nav') %>
+      <section>
+        <h2>List of Products</h2>
+
+        <button
+          class="btn"
+          style="width: 200px"
+          onclick="location.href='/admin/add-product'"
+          style="cursor: pointer"
+        >
+          Add New Product
+        </button>
+        <div class="product-grid">
+          <% for(p of products) {%>
+          <div
+            class="product-card"
+            onclick="viewDetailsHandler('<%= p._id %>')"
+            style="cursor: pointer"
+          >
+            <img class="product-image" src="<%=p.img%>" alt="Product 1" />
+            <h3 class="product-title"><%=p.title%></h3>
+
+            <p class="short-description">
+              <%= p.description.substring(0, 100) %> <strong>...</strong>
+            </p>
+            <div id="icons">
+              <span
+                class="material-symbols-outlined"
+                onclick="confirmDelete('<%= p._id %>')"
+                style="cursor: pointer"
+              >
+                delete
+              </span>
+              <span
+                class="material-symbols-outlined edit"
+                style="margin-right: 10px"
+                onclick="location.href='/admin/edit-product/<%= p._id %>'"
+                style="cursor: pointer"
+              >
+                edit
+              </span>
+            </div>
+          </div>
+          <%}%>
+        </div>
+      </section>
+    </main>
+    <script src="/js/admin/products.js"></script>
+  </body>
+</html>

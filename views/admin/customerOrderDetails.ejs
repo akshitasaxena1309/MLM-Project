@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Order Page</title>
+    <link rel="stylesheet" href="/css/admin/styles.css" />
+    <link rel="stylesheet" href="/css/admin/orders.css" />
+    <link rel="stylesheet" href="/css/common.css" />
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        border: 3px solid rgba(14, 10, 10, 0.268);
+        padding: 8px;
+        text-align: left;
+        background-color: white;
+      }
+
+      th {
+        /* border: 3px solid rgba(255, 255, 255, 0.268); */
+        background-color: white;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1><%=user.username%>'s Order</h1>
+    </header>
+
+    <main>
+      <%- partial('nav') %>
+
+      <section>
+        <table>
+          <thead>
+            <tr>
+              <th>S. No.</th>
+              <th>Product Name</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (let i = 0; i < orders.length; i++) { %>
+            <tr>
+              <th scope="row"><%=i+1%></th>
+              <td>
+                <% for (let j = 0; j < orders[i].products.length; j++) {
+                %><%=orders[i].products[j].name %><br />
+                <% } %>
+              </td>
+              <td>
+                <% for (let j = 0; j < orders[i].products.length; j++) {
+                %><%=orders[i].products[j].quantity %><br />
+                <% } %>
+              </td>
+              <td>&#8377;<%= orders[i].totalAmount %></td>
+              <td><%= orders[i].orderDate.toLocaleDateString() %></td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>

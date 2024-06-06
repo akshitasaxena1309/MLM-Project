@@ -1,0 +1,292 @@
+body {
+  background-color: #79ac78;
+
+  font-family: "Roboto", sans-serif;
+}
+.Rectangle {
+  position: absolute;
+  top: 0;
+  z-index: -11;
+}
+header {
+  box-shadow: none;
+}
+
+.Group2 {
+  margin: 30px 40px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background: #fffafa;
+  border-radius: 15px;
+  padding: 0 10px; /* Added padding for spacing */
+}
+
+.SearchForMedicine {
+  flex-grow: 1; /* Allow the input to take up remaining space */
+}
+
+.SearchInput {
+  width: 100%; /* Take up 100% of the available width */
+  height: 90%;
+  border: none;
+  outline: none;
+  font-size: 16px;
+}
+
+.Rectangle22 {
+  overflow: hidden;
+  width: 84%;
+  height: 309px;
+  margin: 5% 8%;
+  background: #fff9f9;
+  border-radius: 12.33px;
+}
+
+.slides {
+  display: flex;
+  transition: transform 2.5s ease-in-out;
+}
+
+.slide {
+  flex: 0 0 100%;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.shop-by-categories {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.category-text {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.category {
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.category-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap:20px;
+}
+
+.category-container::-webkit-scrollbar {
+  display: none;
+}
+
+.category-card {
+  flex: 0 0 auto;
+  width: 200px;
+  height: 150px;
+  position: relative;
+  transition: 0.7s;
+}
+
+.category-image {
+  border-radius: 8px;
+  width: 100%;
+
+  height: 150px;
+
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  text-align: center;
+  transition: inherit;
+  border-radius: 8px;
+}
+
+.card-title {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.category-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.pre-btn,
+.nxt-btn {
+  border: none;
+  width: 2vw;
+  height: 20%;
+  position: absolute;
+  top: 60px;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+  z-index: 8;
+}
+
+.pre-btn {
+  left: 0;
+  transform: rotate(180deg);
+}
+
+.nxt-btn {
+  right: 0px;
+}
+
+.pre-btn img,
+.nxt-btn img {
+  opacity: 0.2;
+}
+
+.pre-btn:hover img,
+.nxt-btn:hover img {
+  opacity: 1;
+}
+
+.section {
+  margin-bottom: 30px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.see-all-btn {
+  padding: 10px 22px;
+  background-color: #47754b;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.product-card:hover {
+  transition: 0.7s;
+  transform: scale(1.05);
+}
+#search-icon {
+  background-color: #ffffff;
+  display: flex;
+  margin-right: -10px;
+  padding: 17px;
+  border-radius: 10px 15px;
+}
+
+/* Media Query for responsiveness */
+
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.product-card {
+  background-color: #fff;
+  padding: 15px;
+  height: 280px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  width: 200px;
+
+}
+
+.product-image {
+  width: 100%;
+
+  height: 55%;
+  /* height: auto; */
+  border-radius: 8px;
+}
+
+.product-title {
+  margin: 10px 0;
+  font-size: 18px;
+  color: var(--primary-color, #47754b);
+}
+
+.product-description {
+  color: #555;
+}
+
+.product-link {
+  color: var(--accent-color, #b0d9b1);
+  text-decoration: none;
+  font-weight: bold;
+}
+.add-product-btn {
+  background-color: #47754b;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.add-product-btn:hover {
+  background-color: #345a38;
+}
+.mrp {
+  color: rgb(211, 58, 58);
+  text-decoration: line-through;
+  padding-left: 5px;
+}
+@media only screen and (max-width: 500px) {
+
+  body {
+    font-size: 14px; /* Adjust font size for smaller screens */
+  }
+  .product-card {
+    width:130px;
+    height: 250px;
+    gap:5px;
+  }
+  .container{
+    padding: 5px;
+  }
+  .product-grid {
+    justify-content: space-evenly;
+  }
+  .category-card {
+    flex: 1 0 calc(50% - 20px);
+  }
+  .product-image{
+    height: 45%;
+  }
+
+}

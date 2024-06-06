@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Categories</title>
+    <link rel="stylesheet" href="/css/admin/styles.css" />
+    <link rel="stylesheet" href="/css/admin/add-categories.css" />
+    <link rel="stylesheet" href="/css/common.css">
+  </head>
+  <body>
+    <header>
+      <h1>Add Categories</h1>
+    </header>
+
+    <main>
+      <%- partial('nav') %>
+
+      <section>
+        <form
+          class="add-category-form"
+          action="/admin/categories/add"
+          method="post"
+        >
+          <label for="title">Category Title:</label>
+          <input type="text" id="title" name="title" required />
+
+          <label for="img">Category Image URL:</label>
+          <input type="text" id="img" name="img" required />
+
+          <!-- Add more categories as needed -->
+
+          <button type="submit" style="width: 600px;" class="btn">Add Category</button>
+        </form>
+        </div>
+
+       
+      </section>
+    </main>
+   
+  </body>
+  
+</html>

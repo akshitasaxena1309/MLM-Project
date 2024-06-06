@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registartion</title>
+    <link rel="stylesheet" href="/css/admin/styles.css" />
+    <link rel="stylesheet" href="/css/admin/signup.css" />
+    <link rel="stylesheet" href="/css/common.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    />
+    <style>
+      .pass-class {
+        display: flex;
+        flex-direction: row;
+      }
+      .eye-class {
+        float: right;
+        padding-left: 7%;
+        padding-top: 3%;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Admin Registartion</h1>
+    </header>
+
+    <main>
+      <%- partial('nav') %>
+
+      <section>
+        <form class="add-product-form" action="/admin/signup" method="post">
+          <label for="name">Admin Name</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="email">Email</label>
+          <input type="text" id="email" name="email" required />
+
+          <label for="password">Password</label>
+          <div style="width: 70%" class="pass-class">
+            <input type="password" id="password" name="password" required />
+            <span
+              toggle="#password"
+              class="fa fa-fw fa-eye toggle-password eye-class"
+            ></span>
+          </div>
+
+          <label for="role">Role (Admin)</label>
+          <input
+            type="text"
+            id="role"
+            name="role"
+            placeholder="Write Admin here"
+            required
+          />
+
+          <button class="btn" style="width: 600px" type="submit">
+            Add Admin
+          </button>
+        </form>
+      </section>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+      $(".toggle-password").click(function () {
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+          input.attr("type", "text");
+        } else {
+          input.attr("type", "password");
+        }
+      });
+    </script>
+  </body>
+</html>

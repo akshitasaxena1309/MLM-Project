@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Single Product</title>
+    <link rel="stylesheet" href="/css/user/single-product.css" />
+    <link rel="stylesheet" href="/css/common.css" />
+  </head>
+
+  <body>
+    <%- include('header') %>
+    <div class="content-container">
+
+        <div class="image-container">
+            <img src="<%=product.img%>" alt="Your Image">
+        </div>
+        <div class="product-details">
+            
+            <h1><%=product.title%></h1>
+            <h3><%=category.name%></h3>
+            <p><%=product.description%></p>
+            <div class="flex">
+              <%
+              var dp=product.dp;
+              var discountedPrice = (dp-(0.05*dp)).toFixed(2);%>
+              <p class="price">&#8377;<%= discountedPrice%></p>
+            
+              <p class="price mrp">&#8377;<%=product.dp%><span >  (5% off)</span></p>
+            </div>
+            <div class="buttons-container">
+                <button class="btn" style="width: 150px;" onclick="addToCart('<%= product._id %>')" >Add to Cart</button>
+                <button class="btn" style="width: 150px;" onclick="location.href='/seller/buyNow?pId=<%=product._id.toString()%>'">Buy Now </button>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="review-section" style="background-color: white;">
+        <h1>Reviews</h1>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur ad aut corporis vero impedit, dolorem culpa cumque velit mollitia recusandae illo minus tempore doloremque quis, ipsa provident, ducimus quod. Officiis.</p>
+    </div>
+    <%- partial('footer') %>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+     
+  // Define the function to handle the "Add to Cart" button click
+  function addToCart(productId) {
+     // Make an AJAX request to the server using the fetch API
+  console.log(productId);
+  fetch(`/seller/addToCart/${productId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    // Include the product ID in the request body
+    body: JSON.stringify({ productId: productId }),
+    // You can include credentials if needed, e.g., 'credentials': 'include'
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Error adding product to cart');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log(data); // Handle the success response
+    alert('Product added to cart successfully!');
+    window.location.reload();
+  })
+  .catch(error => {
+    console.error(error); // Handle the error response
+    window.location.href="/seller/loginPage";
+  });
+  }
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UserProfile</title>
+    <link rel="stylesheet" href="/css/user/userProfile.css" />
+    <link rel="stylesheet" href="/css/common.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="/css/admin/styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+      .info {
+        border: 2px solid black;
+        display: flex;
+        flex-direction: column;
+        padding-left: 10px;
+      }
+
+      .sBox {
+        display: flex;
+      }
+      .btn-class {
+        width: 500px;
+        background-color: #47754b;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .btn-class:hover {
+        background-color: #345a38;
+      }
+      .card:hover {
+        transition: 0.7s;
+        transform: scale(1.05);
+      }
+      .form-check {
+        /* display: flex; */
+        /* flex-direction: row; */
+      }
+    </style>
+  </head>
+
+  <body>
+    <%- partial('header') %>
+    <div class="container">
+      <div class="cards">
+        <div class="card">
+          <h2>0 INR</h2>
+          <p>Total Deposit</p>
+        </div>
+
+        <div class="card">
+          <h2>0 INR</h2>
+          <p>Total Withdraw</p>
+        </div>
+
+        <div
+          class="card"
+          onclick="location.href='/seller/orderDetails'"
+          style="cursor: pointer"
+        >
+          <h2><%=userData.orders.length%></h2>
+          <p>Total Orders</p>
+        </div>
+        <div class="card">
+          <h2>0</h2>
+          <p>Total users</p>
+        </div>
+        <div class="card">
+          <h2>0</h2>
+          <p>Total BV</p>
+        </div>
+        <div class="card">
+          <h2>0</h2>
+          <p>Orders</p>
+        </div>
+
+        <div class="card">
+          <h2>Active</h2>
+          <p>Status</p>
+        </div>
+        <div class="card">
+          <h2>0</h2>
+          <p>stocks</p>
+        </div>
+      </div>
+      <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseThree"
+              aria-expanded="false"
+              aria-controls="flush-collapseThree"
+            >
+              <h4>Bill Information</h4>
+            </button>
+          </h2>
+          <div
+            id="flush-collapseThree"
+            class="accordion-collapse collapse"
+            data-bs-parent="#accordionFlushExample"
+          >
+            <div class="accordion-body">
+              <form class="row g-3" id="billForm">
+                <div class="col-md-6">
+                  <label for="billNumber" class="form-label">Bill Number</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="billNumber"
+                    name="billNumber"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label for="user" class="form-label">Buyer ID</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="user"
+                    name="user"
+                  />
+                </div>
+
+                <div class="col-12">
+                  <% for(p of products) { %>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input product-checkbox"
+                      type="checkbox"
+                      id="product_<%= p._id %>"
+                      value="<%= p._id %>"
+                    />
+                    <label class="form-check-label" for="product_<%= p._id %>"
+                      ><%= p.title %></label
+                    >
+                    <input
+                      type="number"
+                      class="form-control quantity-input"
+                      id="quantity_<%= p._id %>"
+                      placeholder="Enter product Quantity"
+                      name="quantity_<%= p._id %>"
+                    />
+                  </div>
+                  <% } %>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="totalAmount" class="form-label"
+                    >totalAmount</label
+                  >
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="totalAmount"
+                    name="totalAmount"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label for="date" class="form-label">Date</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="date"
+                    name="date"
+                  />
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary">
+                    Add Bill
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseOne"
+              aria-expanded="false"
+              aria-controls="flush-collapseOne"
+            >
+              <h4>Personal Information</h4>
+            </button>
+          </h2>
+          <div
+            id="flush-collapseOne"
+            class="accordion-collapse collapse"
+            data-bs-parent="#accordionFlushExample"
+          >
+            <div class="accordion-body">
+              <form action="/seller/edit" method="post">
+                <label for="username">User Name</label>
+                <input
+                  type="text"
+                  name="username"
+                  id="username"
+                  value="<%=userData.username%>"
+                />
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  value="<%=userData.email%>"
+                />
+                <label for="phone">Phone</label>
+                <input
+                  type="text"
+                  name="phone"
+                  id="number"
+                  value="<%=userData.phone%>"
+                />
+
+                <h5>Address</h5>
+                <label for="street">Street</label>
+                <input
+                  type="text"
+                  name="street"
+                  id="street"
+                  value="<%= userData.address.street %>"
+                />
+
+                <label for="city">City</label>
+                <input
+                  type="text"
+                  name="city"
+                  id="city"
+                  value="<%= userData.address.city %>"
+                />
+
+                <label for="state">State</label>
+                <input
+                  type="text"
+                  name="state"
+                  id="state"
+                  value="<%= userData.address.state %>"
+                />
+
+                <label for="zipCode">Zip Code</label>
+                <input
+                  type="text"
+                  name="zipCode"
+                  id="zipCode"
+                  value="<%= userData.address.zipCode %>"
+                />
+
+                <label for="country">Country</label>
+                <input
+                  type="text"
+                  name="country"
+                  id="country"
+                  value="<%= userData.address.country %>"
+                />
+                <button class="btn-class" style="width: 100px" type="submit">
+                  Save
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseTwo"
+              aria-expanded="false"
+              aria-controls="flush-collapseTwo"
+            >
+              <h4>Signout</h4>
+            </button>
+          </h2>
+          <div
+            id="flush-collapseTwo"
+            class="accordion-collapse collapse"
+            data-bs-parent="#accordionFlushExample"
+          >
+            <div class="accordion-body">
+              <div class="links">
+                <button
+                  onclick="logout()"
+                  class="sign-out btn"
+                  style="width: 200px"
+                >
+                  Sign Out
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />
+
+    <%- partial('footer') %>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      async function logout() {
+        const confirmation = confirm("Are you sure you want to log out?");
+
+        if (confirmation) {
+          try {
+            const response = await fetch(`/seller/logout`);
+
+            if (response.ok) {
+              window.location.href = "/seller";
+            } else {
+              console.error("Logout failed:", response.statusText);
+            }
+          } catch (error) {
+            console.error("Error during logout:", error);
+          }
+        }
+      }
+
+      $(document).ready(function () {
+        $("#billForm").submit(function (event) {
+          event.preventDefault();
+
+          const billNumber = $("#billNumber").val();
+          const user = $("#user").val();
+          const totalAmount = $("#totalAmount").val();
+          const date = $("#date").val();
+
+          // Extracting selected products and their quantities
+          const products = [];
+          $(".form-check-input:checked").each(function () {
+            const product = $(this).val();
+            const quantityInput = $(`#quantity_${product}`); // Find the corresponding quantity input
+            const quantity = quantityInput.val();
+            products.push({ product, quantity });
+          });
+          console.log(products);
+          // Send form data to server
+          $.ajax({
+            url: "/seller/addbill",
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify({
+              billNumber,
+              user,
+              totalAmount,
+              date,
+              products,
+            }),
+            success: function (response) {
+              console.log(response.message);
+              // Handle success response as needed
+            },
+            error: function (xhr, status, error) {
+              console.error(error);
+              // Handle error response as needed
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

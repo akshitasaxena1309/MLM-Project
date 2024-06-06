@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registartion/Login</title>
+    <link rel="stylesheet" href="/css/user/signupLogin.css" />
+    <link rel="stylesheet" href="/css/common.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    />
+    <style>
+      .pass-class {
+        display: flex;
+        flex-direction: row;
+      }
+      .eye-class {
+        float: right;
+        padding-left: 7%;
+        padding-top: 3%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <%- partial('header') %>
+    <div class="container">
+      <h2>Signup</h2>
+      <form id="signupForm" action="/user/signup" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="password">Password:</label>
+        <div style="width: 70%" class="pass-class">
+          <input type="password" id="password" name="password" required />
+          <span
+            toggle="#password"
+            class="fa fa-fw fa-eye toggle-password eye-class"
+          ></span>
+        </div>
+
+        <label for="referrer">Referral Code:</label>
+        <input type="referrer" id="referrer" name="referrer" required />
+
+        <label for="phone">Phone:</label>
+        <input type="text" id="phone" name="phone" required />
+
+        <label for="street">Street:</label>
+        <input type="text" id="street" name="address[street]" />
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="address[city]" />
+
+        <label for="state">State:</label>
+        <input type="text" id="state" name="address[state]" />
+
+        <label for="zipCode">Zip Code:</label>
+        <input type="text" id="zipCode" name="address[zipCode]" />
+
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="address[country]" />
+
+        <button class="btn" type="submit">Signup</button>
+      </form>
+    </div>
+    <%- partial('footer') %>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+      $(".toggle-password").click(function () {
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+          input.attr("type", "text");
+        } else {
+          input.attr("type", "password");
+        }
+      });
+    </script>
+  </body>
+</html>

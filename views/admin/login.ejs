@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="/css/admin/login.css" />
+    <link rel="stylesheet" href="/css/common.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+    />
+    <style>
+      .pass-class {
+        display: flex;
+        flex-direction: row;
+      }
+      .eye-class {
+        float: right;
+        padding-left: 7%;
+        padding-top: 7%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <h1>Admin Login</h1>
+
+      <form action="/admin/login" method="post">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required />
+        <label for="password">Password:</label>
+        <!-- <input type="password" id="password" name="password" required /> -->
+        <div style="width: 300px" class="pass-class">
+          <input id="password" type="password" name="password" />
+          <span
+            toggle="#password"
+            class="fa fa-fw fa-eye toggle-password eye-class"
+          ></span>
+        </div>
+
+        <button type="submit">Login</button>
+      </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+      $(".toggle-password").click(function () {
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+          input.attr("type", "text");
+        } else {
+          input.attr("type", "password");
+        }
+      });
+    </script>
+  </body>
+</html>

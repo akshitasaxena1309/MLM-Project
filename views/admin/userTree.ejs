@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Tree</title>
+    <link rel="stylesheet" href="/css/admin/styles.css" />
+    <style>
+      section {
+        padding: 20px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        border: 3px solid rgba(14, 10, 10, 0.268);
+        padding: 8px;
+        text-align: left;
+        background-color: white;
+      }
+      td div {
+        text-align: center;
+      }
+      th {
+        background-color: white;
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <header><h1><%= user.username %>'s Tree</h1></header>
+
+    <main>
+      <%- partial('nav') %>
+      <section>
+        <h3>Referral Code : <%= user.referId %></h3>
+        <% if (usersWithSameReferId.length === 0) { %>
+        <h3>No data</h3>
+        <% } else{ %>
+
+        <table>
+          <thead>
+            <tr>
+              <th>UserName</th>
+              <th>E-mail</th>
+              <th>Show Tree</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(u of usersWithSameReferId) { %>
+            <tr>
+              <td><%= u.username %></td>
+              <td><%= u.email %></td>
+              <td>
+                <div>
+                  <button
+                    onclick="location.href='/admin/customers/tree?id=<%= u._id %>'"
+                    style="cursor: pointer"
+                  >
+                    Tree
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+        <% } %>
+      </section>
+    </main>
+  </body>
+</html>

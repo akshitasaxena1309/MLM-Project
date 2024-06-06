@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer-Details</title>
+    <link rel="stylesheet" href="/css/admin/styles.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/common.css" />
+    <style>
+      .flex {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      button {
+        background-color: #47754b;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-bottom: 20px;
+      }
+
+      button:hover {
+        background-color: #87ba83;
+      }
+
+      .card:hover {
+        transition: 0.7s;
+        transform: scale(1.05);
+
+      .card {
+        cursor: pointer;
+
+      }
+    </style>
+  </head>
+  <body>
+    <header><h1>Customers Details</h1></header>
+    <main>
+      <%- partial('nav') %>
+      <section>
+        <div class="cards">
+          <div class="card">
+            <h2>0 INR</h2>
+            <p>Total Deposit</p>
+          </div>
+
+          <div class="card">
+            <h2>0 INR</h2>
+            <p>Total Withdraw</p>
+          </div>
+          <div class="card">
+            <h2>0</h2>
+            <p>Total Transaction</p>
+          </div>
+          <div
+            onclick="location.href='/admin/customerOrderDetails?id=<%= user._id %>'"
+            class="card"
+          >
+            <h2><%= user.orders.length %></h2>
+            <p>Total Orders</p>
+          </div>
+          <div class="card">
+            <h2>0</h2>
+            <p>Total BV</p>
+          </div>
+          <div class="card">
+            <h2>Active</h2>
+            <p>Status</p>
+          </div>
+          <div class="card">
+            <h2>0</h2>
+            <p>Orders</p>
+          </div>
+          <div class="card">
+            <h2>0.00 INR</h2>
+            <p>Balance</p>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="card shadow">
+            <div class="card-header font-weight-bold">
+              <h2>Information of User</h2>
+            </div>
+
+            <div class="card-body">
+              <div>
+                <p><b>Username : </b><%= user.username %></p>
+              </div>
+              <div>
+                <p><b>E-mail : </b><%= user.email %></p>
+              </div>
+              <div>
+                <p><b>Phone : </b><%= user.phone %></p>
+              </div>
+              <div class="flex">
+                <p>
+                  <b>Address :</b> <%= user.address.street %>, <%=
+                  user.address.city %> (<%= user.address.zipCode %>), <%=
+                  user.address.state %>, <%= user.address.country %>
+                </p>
+                <button
+                  onclick="location.href='/admin/customers/tree?id=<%= user._id %>'"
+                  style="cursor: pointer"
+                >
+                  User Tree
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

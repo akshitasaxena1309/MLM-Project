@@ -1,0 +1,23 @@
+nav {
+  background-color: #79ac78;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  width: 200px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+  margin: 5px;
+  display: block;
+}
+nav a:hover {
+  background-color: #47754b;
+}
+@media (max-width: 600px) {
+  nav {
+    width: 100%;
+  }
+}
