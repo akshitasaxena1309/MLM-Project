@@ -3,6 +3,8 @@
 # Overview
 This project is a fully functional Multilevel Marketing (MLM) website featuring admin, user, and seller panels. It is a collaborative team effort aimed at providing a comprehensive platform for MLM operations.
 
+## Click Here:- https://mlm-project-tawny.vercel.app/
+
 # Features
 - **Admin Panel:** Manage users, sellers, and overall platform settings.
 - **User Panel:** Access user-specific functionalities and manage personal information.
@@ -27,7 +29,7 @@ This project is a fully functional Multilevel Marketing (MLM) website featuring 
 # Installation
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/mlm-website.git
+    https://github.com/akshitasaxena1309/MLM-Project.git
     ```
 2. Navigate to the project directory:
     ```sh
