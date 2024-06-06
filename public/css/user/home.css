@@ -37,7 +37,7 @@ header {
 .Rectangle22 {
   overflow: hidden;
   width: 84%;
-  height: 309px;
+  height: 350px;
   margin: 5% 8%;
   background: #fff9f9;
   border-radius: 12.33px;
@@ -85,7 +85,7 @@ img {
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth;
-  gap:20px;
+  gap: 20px;
 }
 
 .category-container::-webkit-scrollbar {
@@ -221,7 +221,6 @@ img {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
   width: 200px;
-
 }
 
 .product-image {
@@ -267,16 +266,15 @@ img {
   padding-left: 5px;
 }
 @media only screen and (max-width: 500px) {
-
   body {
     font-size: 14px; /* Adjust font size for smaller screens */
   }
   .product-card {
-    width:130px;
+    width: 130px;
     height: 250px;
-    gap:5px;
+    gap: 5px;
   }
-  .container{
+  .container {
     padding: 5px;
   }
   .product-grid {
@@ -285,8 +283,7 @@ img {
   .category-card {
     flex: 1 0 calc(50% - 20px);
   }
-  .product-image{
+  .product-image {
     height: 45%;
   }
-
 }
