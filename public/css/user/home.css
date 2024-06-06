@@ -55,8 +55,20 @@ header {
 img {
   width: 100%;
   height: auto;
+  border-radius: 12.33px;
 }
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .Rectangle22 {
+    width: 95%;
+    height: 230px;
+    margin: 5%;
+  }
 
+  .slide img {
+    border-radius: 12px; /* Adjusted for better visual on smaller screens */
+  }
+}
 .container {
   max-width: 1200px;
   margin: 20px auto;
